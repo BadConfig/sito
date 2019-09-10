@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from review.forms import reviewForm
+from review.forms import reviewForm,programForm
 from review.models import candidates
 # Create your views here.
 def create(request):
@@ -8,7 +8,8 @@ def create(request):
         if saveForm.is_valid():
             saveForm.save() 
     reviewerForm = reviewForm()
-    context = {'form':reviewerForm}
+    progForm = programForm()
+    context = {'form':reviewerForm,'ProgForm':progForm}
     return render(request,'contest.html',context)
 def show(request):
     ctx = {'candidates':candidates.objects.all()}

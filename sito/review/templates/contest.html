@@ -14,5 +14,12 @@
                         </table>
                         <input type="submit" value="send"/>
                  </form>
+                <form method="post" >
+                        {% csrf_token %}
+                       <table>
+                               {{ ProgForm }}
+                       </table> 
+                        <input type="submit" value="save"/>
+                </form>
           </body>
 </html>

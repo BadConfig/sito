@@ -1,0 +1,5 @@
+~/Test/main.c
+c
+~/Test/inp.txt
+~/Test/op.txt
+10
