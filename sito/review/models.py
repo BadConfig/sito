@@ -1,15 +1,43 @@
 from django.db import models
 
-# Create your models here.
-class candidates(models.Model):
-    uniqueID = models.IntegerField(unique = True,primary_key = True,)
-    firstName = models.CharField(max_length=20)
-    lastName = models.CharField(max_length=20)
-    email = models.EmailField()
-    about = models.SlugField()
-    program = models.FileField(upload_to='programs/%Y/%m/%d/'+'CppTests.cpp')
-    dateTime = models.DateTimeField(auto_now_add=True)
 
+class userAccount(models.Model):
+    #forign key
+    userID      = models.IntegerField(
+            unique = True,
+            primary_key = True,
+            )
+    # email field is also in candidates model
+    email       = models.EmailField()
+    #candidate password
+    password    = models.CharField(
+            max_length  = 20,
+            )
+    def createAnAccount(self):
+        pass
+        
+
+class candidates(models.Model):
+    AUTHMODEL   = 'userAccount'
+    uniqueID    = models.IntegerField(
+            unique = True,primary_key = True,
+            )
+    firstName   = models.CharField(max_length=20)
+    lastName    = models.CharField(max_length=20)
+    email       = models.EmailField()
+    about       = models.SlugField()
+    program     = models.FileField(
+            upload_to='programs/%Y/%m/%d/'+'CppTests.cpp'
+            )
+    dateTime    = models.DateTimeField(
+            auto_now_add=True
+            )
+    accountData = models.OneToOneField(
+            AUTHMODEL,
+            on_delete = models.CASCADE,
+            related_name = 'authModel',
+            )
+    
 
 # MODEL OF CANDIDATES PROGRAMS
 def userUploadFilePath(instanse,fileName):
@@ -64,7 +92,7 @@ class program(models.Model):
     candidate    = models.ForeignKey(
             PARENTMODEL,
             on_delete    = models.CASCADE,
-            related_name = 'cands'
+            related_name = 'programs'
             )
     #TRUE IF PROGRAM IS WRITTEN IN TEXT AND IN FILE
     def WrittenInText(self):

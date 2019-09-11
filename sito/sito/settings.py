@@ -55,7 +55,11 @@ ROOT_URLCONF = 'sito.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': ['review/templates',],
+        'DIRS': [
+            'review/templates',
+            'sito/templates',
+            '',
+            ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

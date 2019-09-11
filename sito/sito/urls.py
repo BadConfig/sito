@@ -15,10 +15,12 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path,include
+from .views import auth_view
 
 admin.autodiscover()
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('review/',include('review.urls'))
+    path('review/',include('review.urls')),
+    path('',auth_view)
 ]
