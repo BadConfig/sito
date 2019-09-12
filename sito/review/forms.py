@@ -2,6 +2,7 @@ from django import forms
 from review.models import candidates,program,userAccount
 from django.db import models
 
+# .save() with commit=False  returns modelForm no saving
 class createAccountForm(forms.ModelForm):
     class Meta:
         model = userAccount
